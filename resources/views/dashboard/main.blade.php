@@ -46,6 +46,8 @@
         <a class="nav-link" href="{{route('about.index')}}">About</a>
         <a class="nav-link" href="{{route('menu.index')}}">Menu</a>
         <a class="nav-link" href="{{route('team.index')}}">Team</a>
+        <a class="nav-link" href="{{route('testimonial.index')}}">Testimonial</a>
+        <a class="nav-link" href="{{route('reservation.index')}}">Reservation</a>
         <a class="nav-link" href="{{route('auth.logout')}}t">logout</a>
 
     </nav>

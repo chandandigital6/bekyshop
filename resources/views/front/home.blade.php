@@ -189,18 +189,80 @@
             <div class="form-section">
                 <h2>Reservation</h2>
                 <h1>Book A Table Online</h1>
-                <form>
-                    <input type="text" name="name" placeholder="Your Name" required>
-                    <input type="email" name="email" placeholder="Your Email" required>
-                    <input type="datetime-local" name="date-time" required>
-                    <select name="no-of-people" required>
-                        <option value="1">People 1</option>
-                        <option value="2">People 2</option>
-                        <option value="3">People 3</option>
-                        <option value="4">People 4</option>
-                    </select>
-                    <textarea name="special-request" placeholder="Special Request"></textarea>
-                    <button type="submit">BOOK NOW</button>
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
+                <form action="{{ route('reservation.store') }}" method="post">
+                    @csrf
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" name="name" placeholder="Your Name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" required>
+                        @error('name')
+                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" placeholder="Your Email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" required>
+                        @error('email')
+                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="date_time">Date and Time</label>
+                        <input type="datetime-local" name="date_time" class="form-control @error('date_time') is-invalid @enderror" value="{{ old('date_time') }}" required>
+                        @error('date_time')
+                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="no_of_people">Number of People</label>
+                        <select name="no_of_people" class="form-control @error('no_of_people') is-invalid @enderror" required>
+                            <option value="1" {{ old('no_of_people') == 1 ? 'selected' : '' }}>People 1</option>
+                            <option value="2" {{ old('no_of_people') == 2 ? 'selected' : '' }}>People 2</option>
+                            <option value="3" {{ old('no_of_people') == 3 ? 'selected' : '' }}>People 3</option>
+                            <option value="4" {{ old('no_of_people') == 4 ? 'selected' : '' }}>People 4</option>
+                        </select>
+                        @error('no_of_people')
+                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="msg">Message</label>
+                        <textarea name="msg" placeholder="Special Request" class="form-control @error('msg') is-invalid @enderror">{{ old('msg') }}</textarea>
+                        @error('msg')
+                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                        @enderror
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">BOOK NOW</button>
                 </form>
             </div>
         </div>

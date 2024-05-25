@@ -4,7 +4,9 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\TeamController;
+use App\Http\Controllers\TestimonialController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -58,5 +60,23 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::get('team/delete/{team}',[TeamController::class,'delete'])->name('team.delete');
     Route::get('team/duplicate/{team}',[TeamController::class,'duplicate'])->name('team.duplicate');
     Route::post('team/update/{team}',[TeamController::class,'update'])->name('team.update');
+
+
+    Route::get('testimonial/index',[TestimonialController::class,'index'])->name('testimonial.index');
+    Route::get('testimonial/create',[TestimonialController::class,'create'])->name('testimonial.create');
+    Route::post('testimonial/store',[TestimonialController::class,'store'])->name('testimonial.store');
+    Route::get('testimonial/edit/{testimonial}',[TestimonialController::class,'edit'])->name('testimonial.edit');
+    Route::get('testimonial/delete/{testimonial}',[TestimonialController::class,'delete'])->name('testimonial.delete');
+    Route::get('testimonial/duplicate/{testimonial}',[TestimonialController::class,'duplicate'])->name('testimonial.duplicate');
+    Route::post('testimonial/update/{testimonial}',[TestimonialController::class,'update'])->name('testimonial.update');
+
+
+    Route::get('reservation/index',[ReservationController::class,'index'])->name('reservation.index');
+    Route::get('reservation/create',[ReservationController::class,'create'])->name('reservation.create');
+    Route::post('reservation/store',[ReservationController::class,'store'])->name('reservation.store');
+    Route::get('reservation/edit/{reservation}',[ReservationController::class,'edit'])->name('reservation.edit');
+    Route::get('reservation/delete/{reservation}',[ReservationController::class,'delete'])->name('reservation.delete');
+    Route::get('reservation/duplicate/{reservation}',[ReservationController::class,'duplicate'])->name('reservation.duplicate');
+    Route::post('reservation/update/{reservation}',[ReservationController::class,'update'])->name('reservation.update');
 
 });
